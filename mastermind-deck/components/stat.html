@@ -1,0 +1,37 @@
+<!--
+  stat.html — Single hero number + caption. Fitty on number.
+  Slots:
+    data-slot="number"  — required, max 12 chars (e.g. "42%", "3.7×", "1 200")
+    data-slot="caption" — required, max 120 chars (explains the number)
+    data-slot="title"   — optional, max 60 chars (context label above number)
+  Example: number="87%", caption="проектов сданы в срок при использовании итерационного подхода"
+-->
+<section class="slide" aria-label="Stat slide">
+
+  <div class="slide__inner" style="justify-content: center; gap: 2.5rem; max-width: 80%;">
+
+    <span
+      class="t-micro slot"
+      data-slot="title"
+      style="color: var(--color-neutral-600);"
+    ></span>
+
+    <div class="stat-hero">
+      <span
+        class="stat-hero__number slot"
+        data-slot="number"
+        data-fitty="true"
+        aria-label="Статистика"
+        style="color: var(--color-accent);"
+      >42%</span>
+
+      <p
+        class="t-body stat-hero__caption slot line-clamp-4"
+        data-slot="caption"
+        style="color: var(--color-ink); max-width: 52rem;"
+      >Пояснение к цифре — до 120 символов</p>
+    </div>
+
+  </div>
+
+</section>

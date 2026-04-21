@@ -1,0 +1,58 @@
+<!--
+  image-right.html — Thesis text left + 4:3 image right
+  Slots:
+    data-slot="title"   — required, max 80 chars
+    data-slot="body"    — required, max 400 chars
+    data-slot="image"   — required, src path or URL
+    data-slot="alt"     — required, image alt text
+    data-slot="caption" — optional, max 60 chars (image caption)
+  Use when: image + short body (<200 chars) → image-right heuristic
+  Example: title="Двор до реконструкции", body="Типовое дворовое пространство 1970-х..."
+-->
+<section class="slide" aria-label="Image right slide">
+
+  <div class="slide__inner" style="justify-content: center;">
+
+    <div class="cols-5-7 slot" data-slot="columns" style="width: 100%; align-items: center; gap: 5rem;">
+
+      <!-- Left: text -->
+      <div class="flex-col slot" data-slot="text-col" style="gap: 2rem; container-type: inline-size;">
+
+        <h2
+          class="t-h1 slot line-clamp-3"
+          data-slot="title"
+        >Заголовок слайда</h2>
+
+        <p
+          class="t-body slot line-clamp-6"
+          data-slot="body"
+        >Тезис — до 400 символов. Используется когда изображение важно, но текст не уступает ему по смыслу.</p>
+
+      </div>
+
+      <!-- Right: image 4:3 -->
+      <div class="flex-col slot" data-slot="image-col" style="gap: 0.75rem; min-width: 0;">
+
+        <div class="img-zone img-zone--4-3">
+          <img
+            data-slot="image"
+            src=""
+            alt=""
+            data-slot-alt="alt"
+            loading="eager"
+          />
+        </div>
+
+        <span
+          class="t-caption slot line-clamp-2"
+          data-slot="caption"
+          style="color: var(--color-neutral-600);"
+        ></span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

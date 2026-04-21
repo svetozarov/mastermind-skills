@@ -1,0 +1,109 @@
+<!--
+  material-grid.html — Auto-fit grid of 6–9 square material/photo samples
+  Slots:
+    data-slot="title"          — optional, max 60 chars
+    data-slot="item-N-image"  — src for sample image (1–9)
+    data-slot="item-N-alt"    — alt text
+    data-slot="item-N-label"  — caption below sample, max 40 chars
+    data-slot="item-N-sub"    — optional sub-caption (material spec), max 40 chars
+  grid: repeat(auto-fit, minmax(min(180px, 100%), 1fr)) — CSS technique 3
+  Each cell: aspect-ratio 1:1, object-fit cover — CSS technique 4
+  subgrid for caption alignment — CSS technique 9
+  Example: 6 material samples for a facade renovation project
+-->
+<section class="slide" aria-label="Material grid slide">
+
+  <div class="slide__inner" style="gap: 2rem; justify-content: center;">
+
+    <h2
+      class="t-h2 slot line-clamp-2"
+      data-slot="title"
+    >Материалы</h2>
+
+    <!-- auto-fit grid — CSS technique 3 -->
+    <div class="material-grid slot" data-slot="grid">
+
+      <!-- Item 1 -->
+      <div class="material-grid__item">
+        <div class="img-zone img-zone--1-1">
+          <img data-slot="item-1-image" src="" alt="" data-slot-alt="item-1-alt" loading="eager" />
+        </div>
+        <span class="t-caption slot line-clamp-2" data-slot="item-1-label">Образец 1</span>
+        <span class="t-micro slot line-clamp-1" data-slot="item-1-sub" style="color: var(--color-neutral-600);"></span>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="material-grid__item">
+        <div class="img-zone img-zone--1-1">
+          <img data-slot="item-2-image" src="" alt="" data-slot-alt="item-2-alt" loading="eager" />
+        </div>
+        <span class="t-caption slot line-clamp-2" data-slot="item-2-label">Образец 2</span>
+        <span class="t-micro slot line-clamp-1" data-slot="item-2-sub" style="color: var(--color-neutral-600);"></span>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="material-grid__item">
+        <div class="img-zone img-zone--1-1">
+          <img data-slot="item-3-image" src="" alt="" data-slot-alt="item-3-alt" loading="eager" />
+        </div>
+        <span class="t-caption slot line-clamp-2" data-slot="item-3-label">Образец 3</span>
+        <span class="t-micro slot line-clamp-1" data-slot="item-3-sub" style="color: var(--color-neutral-600);"></span>
+      </div>
+
+      <!-- Item 4 -->
+      <div class="material-grid__item">
+        <div class="img-zone img-zone--1-1">
+          <img data-slot="item-4-image" src="" alt="" data-slot-alt="item-4-alt" loading="eager" />
+        </div>
+        <span class="t-caption slot line-clamp-2" data-slot="item-4-label">Образец 4</span>
+        <span class="t-micro slot line-clamp-1" data-slot="item-4-sub" style="color: var(--color-neutral-600);"></span>
+      </div>
+
+      <!-- Item 5 -->
+      <div class="material-grid__item">
+        <div class="img-zone img-zone--1-1">
+          <img data-slot="item-5-image" src="" alt="" data-slot-alt="item-5-alt" loading="eager" />
+        </div>
+        <span class="t-caption slot line-clamp-2" data-slot="item-5-label">Образец 5</span>
+        <span class="t-micro slot line-clamp-1" data-slot="item-5-sub" style="color: var(--color-neutral-600);"></span>
+      </div>
+
+      <!-- Item 6 -->
+      <div class="material-grid__item">
+        <div class="img-zone img-zone--1-1">
+          <img data-slot="item-6-image" src="" alt="" data-slot-alt="item-6-alt" loading="eager" />
+        </div>
+        <span class="t-caption slot line-clamp-2" data-slot="item-6-label">Образец 6</span>
+        <span class="t-micro slot line-clamp-1" data-slot="item-6-sub" style="color: var(--color-neutral-600);"></span>
+      </div>
+
+      <!-- Items 7–9: optional -->
+      <div class="material-grid__item" data-optional="true">
+        <div class="img-zone img-zone--1-1">
+          <img data-slot="item-7-image" src="" alt="" data-slot-alt="item-7-alt" loading="eager" />
+        </div>
+        <span class="t-caption slot line-clamp-2" data-slot="item-7-label"></span>
+        <span class="t-micro slot line-clamp-1" data-slot="item-7-sub" style="color: var(--color-neutral-600);"></span>
+      </div>
+
+      <div class="material-grid__item" data-optional="true">
+        <div class="img-zone img-zone--1-1">
+          <img data-slot="item-8-image" src="" alt="" data-slot-alt="item-8-alt" loading="eager" />
+        </div>
+        <span class="t-caption slot line-clamp-2" data-slot="item-8-label"></span>
+        <span class="t-micro slot line-clamp-1" data-slot="item-8-sub" style="color: var(--color-neutral-600);"></span>
+      </div>
+
+      <div class="material-grid__item" data-optional="true">
+        <div class="img-zone img-zone--1-1">
+          <img data-slot="item-9-image" src="" alt="" data-slot-alt="item-9-alt" loading="eager" />
+        </div>
+        <span class="t-caption slot line-clamp-2" data-slot="item-9-label"></span>
+        <span class="t-micro slot line-clamp-1" data-slot="item-9-sub" style="color: var(--color-neutral-600);"></span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

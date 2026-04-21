@@ -1,0 +1,104 @@
+<!--
+  timeline.html — Horizontal timeline with 3–7 points, labels above and below
+  Slots:
+    data-slot="title"          — optional, max 60 chars
+    data-slot="point-N-date"  — date/year label (above dot), max 20 chars
+    data-slot="point-N-label" — event label (below dot), max 60 chars
+    Supports 3–7 points. Empty slots are hidden via partial-loader.
+  Example: 5-point project timeline from 2020 to 2025
+-->
+<section class="slide" aria-label="Timeline slide">
+
+  <div class="slide__inner" style="justify-content: center; gap: 4rem;">
+
+    <h2
+      class="t-h2 slot line-clamp-2"
+      data-slot="title"
+    >Хронология</h2>
+
+    <div class="timeline" role="list">
+
+      <!-- Track line behind dots -->
+      <div class="timeline__track" aria-hidden="true"></div>
+
+      <!-- Point 1 -->
+      <div class="timeline__item" role="listitem">
+        <div class="timeline__label-above">
+          <span class="t-micro slot" data-slot="point-1-date" style="color: var(--color-accent);">2020</span>
+        </div>
+        <div class="timeline__dot"></div>
+        <div class="timeline__label-below">
+          <span class="t-caption slot line-clamp-2" data-slot="point-1-label">Первый этап</span>
+        </div>
+      </div>
+
+      <!-- Point 2 -->
+      <div class="timeline__item" role="listitem">
+        <div class="timeline__label-above">
+          <span class="t-micro slot" data-slot="point-2-date" style="color: var(--color-accent);">2021</span>
+        </div>
+        <div class="timeline__dot"></div>
+        <div class="timeline__label-below">
+          <span class="t-caption slot line-clamp-2" data-slot="point-2-label">Второй этап</span>
+        </div>
+      </div>
+
+      <!-- Point 3 -->
+      <div class="timeline__item" role="listitem">
+        <div class="timeline__label-above">
+          <span class="t-micro slot" data-slot="point-3-date" style="color: var(--color-accent);">2022</span>
+        </div>
+        <div class="timeline__dot"></div>
+        <div class="timeline__label-below">
+          <span class="t-caption slot line-clamp-2" data-slot="point-3-label">Третий этап</span>
+        </div>
+      </div>
+
+      <!-- Point 4 -->
+      <div class="timeline__item" role="listitem">
+        <div class="timeline__label-above">
+          <span class="t-micro slot" data-slot="point-4-date" style="color: var(--color-accent);">2023</span>
+        </div>
+        <div class="timeline__dot"></div>
+        <div class="timeline__label-below">
+          <span class="t-caption slot line-clamp-2" data-slot="point-4-label">Четвёртый этап</span>
+        </div>
+      </div>
+
+      <!-- Point 5 -->
+      <div class="timeline__item" role="listitem">
+        <div class="timeline__label-above">
+          <span class="t-micro slot" data-slot="point-5-date" style="color: var(--color-accent);">2024</span>
+        </div>
+        <div class="timeline__dot"></div>
+        <div class="timeline__label-below">
+          <span class="t-caption slot line-clamp-2" data-slot="point-5-label">Пятый этап</span>
+        </div>
+      </div>
+
+      <!-- Points 6–7: leave empty slots, partial-loader hides if no data -->
+      <div class="timeline__item" role="listitem" data-optional="true">
+        <div class="timeline__label-above">
+          <span class="t-micro slot" data-slot="point-6-date" style="color: var(--color-accent);"></span>
+        </div>
+        <div class="timeline__dot" style="background-color: var(--color-neutral-200);"></div>
+        <div class="timeline__label-below">
+          <span class="t-caption slot line-clamp-2" data-slot="point-6-label"></span>
+        </div>
+      </div>
+
+      <div class="timeline__item" role="listitem" data-optional="true">
+        <div class="timeline__label-above">
+          <span class="t-micro slot" data-slot="point-7-date" style="color: var(--color-accent);"></span>
+        </div>
+        <div class="timeline__dot" style="background-color: var(--color-neutral-200);"></div>
+        <div class="timeline__label-below">
+          <span class="t-caption slot line-clamp-2" data-slot="point-7-label"></span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

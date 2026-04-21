@@ -1,0 +1,78 @@
+<!--
+  closing.html — Mirror of cover: dark background, contact/QR slot
+  Slots:
+    data-slot="title"    — required, max 80 chars (closing statement or "Спасибо")
+    data-slot="subtitle" — optional, max 120 chars (next step or invitation)
+    data-slot="contact"  — optional, max 60 chars (Telegram, email, website)
+    data-slot="qr-image" — optional, src for QR code image
+    data-slot="date"     — optional, max 30 chars
+    data-slot="code"     — optional, max 20 chars
+  Theme: dark (sandwich structure — mirrors cover)
+  Example: title="Спасибо", contact="@username", subtitle="Жду вопросов"
+-->
+<section class="slide slide--dark" aria-label="Closing slide">
+
+  <div class="slide__inner" style="justify-content: space-between;">
+
+    <!-- Top: code marker -->
+    <div class="flex-row" style="align-items: center;">
+      <span
+        class="t-micro slot"
+        data-slot="code"
+        style="color: var(--color-neutral-600);"
+      >Research Mastermind</span>
+    </div>
+
+    <!-- Centre: closing statement -->
+    <div class="flex-col" style="gap: 2rem; max-width: 72%;">
+
+      <h1
+        class="t-hero slot line-clamp-3"
+        data-slot="title"
+        data-fitty="true"
+        style="color: var(--color-paper);"
+      >Спасибо</h1>
+
+      <p
+        class="t-body slot line-clamp-3"
+        data-slot="subtitle"
+        style="color: var(--color-neutral-200); max-width: 52rem;"
+      ></p>
+
+    </div>
+
+    <!-- Bottom: contact row + QR -->
+    <div class="flex-col" style="gap: 1.5rem;">
+
+      <div class="rule"></div>
+
+      <div class="contact-row">
+
+        <span
+          class="t-body slot"
+          data-slot="contact"
+          style="color: var(--color-paper);"
+        ></span>
+
+        <div class="qr-zone" data-slot-container="qr-image">
+          <img
+            data-slot="qr-image"
+            src=""
+            alt="QR code"
+            style="width: 100%; height: 100%; object-fit: contain;"
+          />
+        </div>
+
+      </div>
+
+      <span
+        class="t-micro slot"
+        data-slot="date"
+        style="color: var(--color-neutral-600);"
+      ></span>
+
+    </div>
+
+  </div>
+
+</section>

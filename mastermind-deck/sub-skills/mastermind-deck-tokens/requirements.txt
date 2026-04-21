@@ -1,0 +1,37 @@
+# Зависимости Python для extract-style.py
+# Установка: pip install -r requirements.txt
+#
+# Примечание: pdf2image также требует poppler-utils (системная зависимость):
+#   Ubuntu/Debian: sudo apt-get install poppler-utils
+#   macOS:         brew install poppler
+#   Windows:       скачать poppler с https://github.com/oschwartz10612/poppler-windows/releases
+#                  и добавить bin/ в PATH
+#
+# soffice (LibreOffice) требуется для конвертации PPTX → PDF:
+#   Ubuntu/Debian: sudo apt-get install libreoffice
+#   macOS:         brew install --cask libreoffice
+#   Windows:       https://www.libreoffice.org/download/download-libreoffice/
+
+# Извлечение данных из PDF
+pdfplumber>=0.11.0
+
+# Конвертация PDF → PNG (требует poppler-utils в системе)
+pdf2image>=1.17.0
+
+# Обработка изображений
+Pillow>=10.0.0
+
+# Извлечение доминантных цветов из изображений
+colorthief>=0.2.1
+
+# Кластеризация изображений (k-means для выбора репрезентативных скриншотов)
+scikit-learn>=1.4.0
+
+# Anthropic API для Claude Vision (Шаг 4)
+anthropic>=0.40.0
+
+# Разбор YAML-файлов (deck-brief.yaml)
+pyyaml>=6.0.1
+
+# Валидация tokens.json против tokens.schema.json (опционально)
+jsonschema>=4.21.0

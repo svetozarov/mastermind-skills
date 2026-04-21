@@ -1,0 +1,219 @@
+{
+  "$comment": "Fallback-таблица шрифтов для mastermind-deck-tokens (Шаг 5 пайплайна). Формат: { <исходный шрифт>: { display, text, mono } }. Принцип: не замазывание, а осознанный выбор — каждый fallback обоснован категорией. Источник: mastermind-deck-tokens.md Шаг 5.",
+  "Inter": {
+    "display": "Helvetica, Arial, sans-serif",
+    "text": "Helvetica, Arial, sans-serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Inter — нейтральный геометрический гротеск. Helvetica — ближайший web-safe аналог с похожим x-height и нейтральным характером."
+  },
+  "Inter Display": {
+    "display": "Helvetica, Arial, sans-serif",
+    "text": "Helvetica, Arial, sans-serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Оптически скорректированный Inter для крупных размеров. Helvetica — ближайший web-safe."
+  },
+  "Söhne": {
+    "display": "Helvetica, Arial, sans-serif",
+    "text": "Helvetica, Arial, sans-serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Söhne — неогротеск с характером Helvetica 1957. Прямой аналог — Helvetica."
+  },
+  "GT America": {
+    "display": "Helvetica, Arial, sans-serif",
+    "text": "Helvetica, Arial, sans-serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "GT America — гибрид American Gothic и Swiss grotesque. Helvetica — ближайший web-safe по структуре."
+  },
+  "Roobert": {
+    "display": "Helvetica, Arial, sans-serif",
+    "text": "Helvetica, Arial, sans-serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Roobert — дружелюбный гротеск. Helvetica — наилучший web-safe компромисс."
+  },
+  "Circular": {
+    "display": "Helvetica, Arial, sans-serif",
+    "text": "Helvetica, Arial, sans-serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Circular — геометрический гротеск (Spotify, Airbnb). Helvetica ближе по нейтральности, чем Arial."
+  },
+  "Neue Haas Grotesk": {
+    "display": "Helvetica, Arial, sans-serif",
+    "text": "Helvetica, Arial, sans-serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Neue Haas Grotesk — прямой предшественник Helvetica. Идентичный fallback."
+  },
+  "Akzidenz-Grotesk": {
+    "display": "Helvetica, Arial, sans-serif",
+    "text": "Helvetica, Arial, sans-serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Akzidenz-Grotesk — классический немецкий гротеск, оказал влияние на Helvetica. Helvetica — ближайший web-safe."
+  },
+  "Aktiv Grotesk": {
+    "display": "Helvetica, Arial, sans-serif",
+    "text": "Helvetica, Arial, sans-serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Aktiv Grotesk — нейтральный неогротеск. Helvetica — стандартный fallback."
+  },
+  "Futura": {
+    "display": "Impact, Arial, sans-serif",
+    "text": "Arial, sans-serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Futura — геометрический гротеск с высокой контрастностью. Impact — единственный web-safe display-шрифт с близким характером для заголовков; Arial для тела."
+  },
+  "Gotham": {
+    "display": "Impact, Arial, sans-serif",
+    "text": "Arial, sans-serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Gotham — геометрический американский гротеск (Obama 2008, муниципальный дизайн). Impact для display-уровня; Arial для body."
+  },
+  "Avenir": {
+    "display": "Impact, Arial, sans-serif",
+    "text": "Arial, sans-serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Avenir — геометрический гротеск Фрутигера. Impact для display, Arial для text."
+  },
+  "Avenir Next": {
+    "display": "Impact, Arial, sans-serif",
+    "text": "Arial, sans-serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Avenir Next — обновлённый Avenir с улучшенными пропорциями. Тот же fallback."
+  },
+  "Garamond": {
+    "display": "Georgia, Times New Roman, serif",
+    "text": "Georgia, Times New Roman, serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Garamond — олд-стайл антиква. Georgia — ближайший web-safe экранный антиква-шрифт с хорошей читаемостью."
+  },
+  "EB Garamond": {
+    "display": "Georgia, Times New Roman, serif",
+    "text": "Georgia, Times New Roman, serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Открытая версия Garamond. Georgia — стандартный fallback."
+  },
+  "Didot": {
+    "display": "Georgia, Times New Roman, serif",
+    "text": "Georgia, Times New Roman, serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Didot — модерн-антиква с высоким контрастом. Georgia хуже передаёт контраст, но является единственным web-safe serif с приемлемым экранным качеством."
+  },
+  "Playfair Display": {
+    "display": "Georgia, Times New Roman, serif",
+    "text": "Georgia, Times New Roman, serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Playfair Display — высококонтрастная антиква для заголовков. Georgia — ближайший web-safe."
+  },
+  "Fraunces": {
+    "display": "Georgia, Times New Roman, serif",
+    "text": "Georgia, Times New Roman, serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Fraunces — оптический serif с чернильными ловушками. Georgia — допустимый web-safe fallback."
+  },
+  "GT Sectra": {
+    "display": "Georgia, Times New Roman, serif",
+    "text": "Georgia, Times New Roman, serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "GT Sectra — газетный serif. Georgia — наиболее близкий web-safe по характеру."
+  },
+  "Tiempos Headline": {
+    "display": "Georgia, Times New Roman, serif",
+    "text": "Georgia, Times New Roman, serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Tiempos Headline — современный editorial serif. Georgia — ближайший web-safe."
+  },
+  "Roboto": {
+    "display": "Arial, Helvetica, sans-serif",
+    "text": "Arial, Helvetica, sans-serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Roboto — гуманистический гротеск Google. Arial — ближайший web-safe по характеру."
+  },
+  "Poppins": {
+    "display": "Arial, Helvetica, sans-serif",
+    "text": "Arial, Helvetica, sans-serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Poppins — геометрический гротеск с округлыми формами. Arial — допустимый fallback."
+  },
+  "Space Grotesk": {
+    "display": "Arial, Helvetica, sans-serif",
+    "text": "Arial, Helvetica, sans-serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Space Grotesk — tech-гротеск с геометрическими деталями. Arial — стандартный web-safe fallback."
+  },
+  "DM Sans": {
+    "display": "Arial, Helvetica, sans-serif",
+    "text": "Arial, Helvetica, sans-serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "DM Sans — нейтральный гуманистический гротеск. Arial — ближайший web-safe."
+  },
+  "Neutraface": {
+    "display": "Georgia, Times New Roman, serif",
+    "text": "Georgia, Times New Roman, serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Neutraface — архитектурный display-шрифт. Парадоксально, Georgia передаёт его структурность лучше, чем Arial. При font_fidelity: strict — screenshot-режим."
+  },
+  "Roboto Slab": {
+    "display": "Georgia, Times New Roman, serif",
+    "text": "Georgia, Times New Roman, serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Roboto Slab — слэб-антиква. Georgia — ближайший web-safe serif."
+  },
+  "JetBrains Mono": {
+    "display": "Courier New, monospace",
+    "text": "Courier New, monospace",
+    "mono": "Courier New, monospace",
+    "$rationale": "JetBrains Mono — программистский моноширинный шрифт. Courier New — единственный web-safe monospace."
+  },
+  "Akkurat Mono": {
+    "display": "Courier New, monospace",
+    "text": "Courier New, monospace",
+    "mono": "Courier New, monospace",
+    "$rationale": "Akkurat Mono — нейтральный моноширинный шрифт. Courier New — стандартный web-safe fallback."
+  },
+  "IBM Plex Mono": {
+    "display": "Courier New, monospace",
+    "text": "Courier New, monospace",
+    "mono": "Courier New, monospace",
+    "$rationale": "IBM Plex Mono — технический моноширинный шрифт. Courier New — стандартный web-safe fallback."
+  },
+  "Fira Code": {
+    "display": "Courier New, monospace",
+    "text": "Courier New, monospace",
+    "mono": "Courier New, monospace",
+    "$rationale": "Fira Code — моноширинный шрифт с лигатурами. Courier New — стандартный web-safe fallback."
+  },
+  "Source Code Pro": {
+    "display": "Courier New, monospace",
+    "text": "Courier New, monospace",
+    "mono": "Courier New, monospace",
+    "$rationale": "Source Code Pro — Adobe моноширинный. Courier New — web-safe fallback."
+  },
+  "Lato": {
+    "display": "Helvetica, Arial, sans-serif",
+    "text": "Helvetica, Arial, sans-serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Lato — гуманистический гротеск с теплотой. Helvetica — ближайший web-safe по нейтральности."
+  },
+  "Open Sans": {
+    "display": "Arial, Helvetica, sans-serif",
+    "text": "Arial, Helvetica, sans-serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Open Sans — нейтральный гуманистический гротеск. Arial — ближайший web-safe по характеру."
+  },
+  "Nunito": {
+    "display": "Arial, Helvetica, sans-serif",
+    "text": "Arial, Helvetica, sans-serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Nunito — скруглённый гуманистический гротеск. Arial — стандартный fallback."
+  },
+  "Montserrat": {
+    "display": "Impact, Arial, sans-serif",
+    "text": "Arial, sans-serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Montserrat — геометрический гротеск вдохновлённый Gotham. Impact для display, Arial для body."
+  },
+  "Raleway": {
+    "display": "Arial, Helvetica, sans-serif",
+    "text": "Arial, Helvetica, sans-serif",
+    "mono": "Courier New, monospace",
+    "$rationale": "Raleway — элегантный тонкий гротеск. Arial — допустимый web-safe fallback."
+  }
+}

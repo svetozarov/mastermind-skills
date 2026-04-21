@@ -1,0 +1,39 @@
+<!--
+  section-divider.html — Chapter break: large number + 1–2 words, 70% whitespace
+  Slots:
+    data-slot="number"  — required, max 2 chars (e.g. "01", "2")
+    data-slot="label"   — required, max 40 chars (e.g. "Контекст")
+    data-slot="subtitle"— optional, max 80 chars
+  Theme: dark (ink background) — sandwich structure
+  Example: number="01", label="Контекст", subtitle="Откуда берётся проблема"
+-->
+<section class="slide slide--dark" aria-label="Section divider">
+
+  <div class="slide__inner" style="justify-content: flex-end; padding-bottom: calc(var(--slide-safe-area) * 1.5);">
+
+    <!-- Large chapter number — accent colour, bottom-left -->
+    <div class="flex-col" style="gap: 2rem; max-width: 60%;">
+
+      <span
+        class="section-divider__number slot"
+        data-slot="number"
+        aria-hidden="true"
+      >01</span>
+
+      <h2
+        class="t-h1 slot line-clamp-2"
+        data-slot="label"
+        style="color: var(--color-paper);"
+      >Раздел</h2>
+
+      <p
+        class="t-body slot line-clamp-2"
+        data-slot="subtitle"
+        style="color: var(--color-neutral-200);"
+      ></p>
+
+    </div>
+
+  </div>
+
+</section>

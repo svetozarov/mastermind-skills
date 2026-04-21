@@ -1,0 +1,90 @@
+<!--
+  plan-section-axon.html — Three-cell architectural drawing grid:
+    top row: plan (full width), bottom row: section left + axonometric right
+  Slots:
+    data-slot="plan-image"    — required, src for floor plan drawing
+    data-slot="plan-alt"      — required, alt text for plan
+    data-slot="plan-caption"  — optional, max 40 chars (e.g. "План 1 этажа")
+    data-slot="section-image" — required, src for section drawing
+    data-slot="section-alt"   — required, alt text
+    data-slot="section-caption" — optional, max 40 chars
+    data-slot="axon-image"    — required, src for axonometric drawing
+    data-slot="axon-alt"      — required, alt text
+    data-slot="axon-caption"  — optional, max 40 chars
+    data-slot="title"         — optional, max 60 chars (slide title, top-left)
+  object-fit: contain for all drawings (preserves line weight and proportions)
+  Example: plan="1F plan", section="A-A section", axon="Southwest axon"
+-->
+<section class="slide" aria-label="Plan section axon slide">
+
+  <div class="slide__inner" style="gap: 1.5rem; padding: var(--slide-safe-area) var(--slide-margin);">
+
+    <!-- Optional slide title -->
+    <h2
+      class="t-micro slot line-clamp-1"
+      data-slot="title"
+      style="color: var(--color-neutral-600); flex-shrink: 0;"
+    ></h2>
+
+    <!-- Three-cell grid -->
+    <div class="plan-axon-grid" style="flex: 1; min-height: 0;">
+
+      <!-- Top: plan full width -->
+      <figure class="plan-axon-grid__plan flex-col" style="gap: 0.5rem; min-height: 0;">
+        <div class="img-zone img-zone--full img-zone--contain" style="flex: 1; min-height: 0; background-color: var(--color-paper);">
+          <img
+            data-slot="plan-image"
+            src=""
+            alt=""
+            data-slot-alt="plan-alt"
+            loading="eager"
+          />
+        </div>
+        <figcaption
+          class="t-micro slot"
+          data-slot="plan-caption"
+          style="color: var(--color-neutral-600);"
+        >План</figcaption>
+      </figure>
+
+      <!-- Bottom-left: section -->
+      <figure class="plan-axon-grid__section flex-col" style="gap: 0.5rem; min-height: 0;">
+        <div class="img-zone img-zone--full img-zone--contain" style="flex: 1; min-height: 0; background-color: var(--color-paper);">
+          <img
+            data-slot="section-image"
+            src=""
+            alt=""
+            data-slot-alt="section-alt"
+            loading="eager"
+          />
+        </div>
+        <figcaption
+          class="t-micro slot"
+          data-slot="section-caption"
+          style="color: var(--color-neutral-600);"
+        >Разрез</figcaption>
+      </figure>
+
+      <!-- Bottom-right: axonometric -->
+      <figure class="plan-axon-grid__axon flex-col" style="gap: 0.5rem; min-height: 0;">
+        <div class="img-zone img-zone--full img-zone--contain" style="flex: 1; min-height: 0; background-color: var(--color-paper);">
+          <img
+            data-slot="axon-image"
+            src=""
+            alt=""
+            data-slot-alt="axon-alt"
+            loading="eager"
+          />
+        </div>
+        <figcaption
+          class="t-micro slot"
+          data-slot="axon-caption"
+          style="color: var(--color-neutral-600);"
+        >Аксонометрия</figcaption>
+      </figure>
+
+    </div>
+
+  </div>
+
+</section>

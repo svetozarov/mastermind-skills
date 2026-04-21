@@ -1,0 +1,52 @@
+<!--
+  two-cols.html — 5/7 or 4/8 split, two content columns, symmetric padding
+  Slots:
+    data-slot="left-title"  — optional, max 60 chars
+    data-slot="left-body"   — required, max 400 chars
+    data-slot="right-title" — optional, max 60 chars
+    data-slot="right-body"  — required, max 400 chars
+  data-split attribute on section: "5-7" (default) or "4-8"
+  Example: left side = problem description, right side = solution description
+-->
+<section class="slide" aria-label="Two columns slide" data-split="5-7">
+
+  <div class="slide__inner" style="justify-content: center;">
+
+    <div class="cols-5-7 slot" data-slot="columns" style="width: 100%; align-items: start;">
+
+      <!-- Left column -->
+      <div class="flex-col slot" data-slot="left-col" style="gap: 1.5rem; container-type: inline-size;">
+
+        <h3
+          class="t-h2 slot line-clamp-3"
+          data-slot="left-title"
+          style="color: var(--color-accent);"
+        >Левый заголовок</h3>
+
+        <p
+          class="t-body slot line-clamp-6"
+          data-slot="left-body"
+        >Левый текст — до 400 символов. Достаточно места для развёрнутого тезиса или нескольких коротких фраз.</p>
+
+      </div>
+
+      <!-- Right column -->
+      <div class="flex-col slot" data-slot="right-col" style="gap: 1.5rem; container-type: inline-size;">
+
+        <h3
+          class="t-h2 slot line-clamp-3"
+          data-slot="right-title"
+        >Правый заголовок</h3>
+
+        <p
+          class="t-body slot line-clamp-6"
+          data-slot="right-body"
+        >Правый текст — до 400 символов. Симметричный отступ, одинаковый шрифт, разный контент.</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

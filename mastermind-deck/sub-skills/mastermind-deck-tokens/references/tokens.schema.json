@@ -1,0 +1,295 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://masterminder.local/schemas/tokens.schema.json",
+  "title": "Mastermind Deck Design Tokens",
+  "description": "JSON Schema (Draft 2020-12) для валидации tokens.json в формате W3C DTCG 2025.10. Обязательные секции: color, font, grid, radius, shadow, slide. Секция slide содержит aspectRatio, safeArea, layouts, decor.",
+  "type": "object",
+  "required": ["color", "font", "grid", "radius", "shadow", "slide"],
+  "additionalProperties": true,
+  "properties": {
+
+    "$schema": {
+      "type": "string",
+      "description": "URL схемы W3C DTCG"
+    },
+
+    "$metadata": {
+      "type": "object",
+      "description": "Метаданные генератора и источников",
+      "properties": {
+        "generator":               { "type": "string" },
+        "sources":                 { "type": "array", "items": { "type": "string" } },
+        "strictFontOverrides":     { "type": "array", "items": { "type": "string" } },
+        "screenshotSlidesRequired":{ "type": "boolean" }
+      }
+    },
+
+    "color": {
+      "type": "object",
+      "description": "Цветовые токены. Обязательны: ink (основной текст), paper (основной фон).",
+      "required": ["ink", "paper"],
+      "properties": {
+        "ink": { "$ref": "#/$defs/colorToken" },
+        "paper": { "$ref": "#/$defs/colorToken" },
+        "accent": {
+          "oneOf": [
+            { "$ref": "#/$defs/colorToken" },
+            {
+              "type": "object",
+              "description": "Вложенная группа акцентных цветов",
+              "properties": {
+                "primary":   { "$ref": "#/$defs/colorToken" },
+                "secondary": { "$ref": "#/$defs/colorToken" }
+              }
+            }
+          ]
+        },
+        "neutral": {
+          "type": "object",
+          "description": "Нейтральная шкала (200, 400, 600, 900 и т.п.)",
+          "additionalProperties": { "$ref": "#/$defs/colorToken" }
+        }
+      },
+      "additionalProperties": true
+    },
+
+    "font": {
+      "type": "object",
+      "description": "Токены типографики. Обязательны: display, text, size.",
+      "required": ["display", "text", "size"],
+      "properties": {
+        "display": { "$ref": "#/$defs/fontFamilyToken" },
+        "text":    { "$ref": "#/$defs/fontFamilyToken" },
+        "mono":    { "$ref": "#/$defs/fontFamilyToken" },
+        "size": {
+          "type": "object",
+          "description": "Шкала размеров шрифта",
+          "required": ["h1", "body"],
+          "properties": {
+            "hero":    { "$ref": "#/$defs/dimensionToken" },
+            "h1":      { "$ref": "#/$defs/dimensionToken" },
+            "h2":      { "$ref": "#/$defs/dimensionToken" },
+            "h3":      { "$ref": "#/$defs/dimensionToken" },
+            "body":    { "$ref": "#/$defs/dimensionToken" },
+            "caption": { "$ref": "#/$defs/dimensionToken" },
+            "micro":   { "$ref": "#/$defs/dimensionToken" }
+          }
+        },
+        "tracking": {
+          "type": "object",
+          "description": "Межбуквенный интервал",
+          "additionalProperties": { "$ref": "#/$defs/stringToken" }
+        },
+        "weight": {
+          "type": "object",
+          "description": "Жирность шрифта (числовые значения 100–900)",
+          "additionalProperties": { "$ref": "#/$defs/numberToken" }
+        }
+      }
+    },
+
+    "grid": {
+      "type": "object",
+      "description": "Токены сетки. Обязательны: canvas, margin, columns, baseline.",
+      "required": ["canvas", "margin", "columns", "baseline"],
+      "properties": {
+        "canvas":   { "$ref": "#/$defs/stringToken" },
+        "margin":   { "$ref": "#/$defs/dimensionToken" },
+        "columns":  { "$ref": "#/$defs/numberToken" },
+        "gutter":   { "$ref": "#/$defs/dimensionToken" },
+        "baseline": { "$ref": "#/$defs/dimensionToken" }
+      }
+    },
+
+    "radius": {
+      "type": "object",
+      "description": "Радиусы скругления. Обязателен: none.",
+      "required": ["none"],
+      "properties": {
+        "none": { "$ref": "#/$defs/dimensionToken" },
+        "sm":   { "$ref": "#/$defs/dimensionToken" },
+        "md":   { "$ref": "#/$defs/dimensionToken" },
+        "lg":   { "$ref": "#/$defs/dimensionToken" },
+        "pill": { "$ref": "#/$defs/dimensionToken" }
+      }
+    },
+
+    "shadow": {
+      "type": "object",
+      "description": "Тени. Обязателен: none.",
+      "required": ["none"],
+      "properties": {
+        "none":     { "$ref": "#/$defs/stringToken" },
+        "subtle":   { "$ref": "#/$defs/stringToken" },
+        "card":     { "$ref": "#/$defs/stringToken" },
+        "elevated": { "$ref": "#/$defs/stringToken" }
+      }
+    },
+
+    "slide": {
+      "type": "object",
+      "description": "ОБЯЗАТЕЛЬНАЯ секция. Параметры слайда: пропорции, безопасная зона, макеты, декор. Без этой секции пайплайн не может корректно сгенерировать слайды.",
+      "required": ["aspectRatio", "safeArea", "layouts", "decor"],
+      "properties": {
+
+        "aspectRatio": {
+          "allOf": [{ "$ref": "#/$defs/stringToken" }],
+          "description": "Пропорции холста слайда. Стандарт: 16/9.",
+          "examples": ["16/9", "4/3"]
+        },
+
+        "safeArea": {
+          "allOf": [{ "$ref": "#/$defs/dimensionToken" }],
+          "description": "Минимальный отступ от края слайда до контента (px). Защищает от обрезки при проецировании."
+        },
+
+        "layouts": {
+          "type": "object",
+          "description": "Определения макетов слайдов. Обязательны: cover, content. Рекомендованы: section-divider, full-bleed.",
+          "required": ["cover", "content"],
+          "properties": {
+            "cover": { "$ref": "#/$defs/slideLayout" },
+            "section-divider": { "$ref": "#/$defs/slideLayout" },
+            "content": { "$ref": "#/$defs/slideLayout" },
+            "full-bleed": { "$ref": "#/$defs/slideLayout" }
+          },
+          "additionalProperties": { "$ref": "#/$defs/slideLayout" }
+        },
+
+        "decor": {
+          "type": "object",
+          "description": "Параметры декоративных элементов (шум, оверлей).",
+          "properties": {
+            "noiseOpacity": {
+              "allOf": [{ "$ref": "#/$defs/numberToken" }],
+              "description": "Непрозрачность шумовой текстуры (0.0–1.0). 0 = нет шума."
+            },
+            "overlayGradient": {
+              "allOf": [{ "$ref": "#/$defs/stringToken" }],
+              "description": "CSS-градиент для оверлея на full-bleed слайдах. 'none' если не используется."
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "$defs": {
+
+    "colorToken": {
+      "type": "object",
+      "description": "W3C DTCG color token",
+      "required": ["$type", "$value"],
+      "properties": {
+        "$type": { "const": "color" },
+        "$value": {
+          "oneOf": [
+            {
+              "type": "string",
+              "description": "Hex-цвет (#RRGGBB) или alias ({token.path}) или 'needs ColorThief verification'",
+              "pattern": "^(#[A-Fa-f0-9]{6}(#[A-Fa-f0-9]{2})?|\\{[\\w.]+\\}|needs .+)$"
+            }
+          ]
+        },
+        "$rationale": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+
+    "fontFamilyToken": {
+      "type": "object",
+      "description": "W3C DTCG fontFamily token",
+      "required": ["$type", "$value"],
+      "properties": {
+        "$type": { "const": "fontFamily" },
+        "$value": {
+          "oneOf": [
+            { "type": "string", "description": "CSS font-family строка" },
+            { "type": "array",  "items": { "type": "string" }, "description": "Массив имён шрифтов" }
+          ]
+        },
+        "$rationale": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+
+    "dimensionToken": {
+      "type": "object",
+      "description": "W3C DTCG dimension token",
+      "required": ["$type", "$value"],
+      "properties": {
+        "$type": { "const": "dimension" },
+        "$value": {
+          "oneOf": [
+            {
+              "type": "object",
+              "required": ["value", "unit"],
+              "properties": {
+                "value": { "type": "number", "minimum": 0 },
+                "unit":  { "type": "string", "enum": ["px", "rem", "em", "pt", "%", "vw", "vh"] }
+              }
+            },
+            { "type": "string", "description": "Строковое представление ('96px') или alias" }
+          ]
+        },
+        "$rationale": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+
+    "numberToken": {
+      "type": "object",
+      "description": "W3C DTCG number token",
+      "required": ["$type", "$value"],
+      "properties": {
+        "$type": { "const": "number" },
+        "$value": { "type": "number" },
+        "$rationale": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+
+    "stringToken": {
+      "type": "object",
+      "description": "W3C DTCG string token (для произвольных строковых значений)",
+      "required": ["$type", "$value"],
+      "properties": {
+        "$type": { "const": "string" },
+        "$value": { "type": "string" },
+        "$rationale": { "type": "string" }
+      },
+      "additionalProperties": true
+    },
+
+    "slideLayout": {
+      "type": "object",
+      "description": "Определение макета слайда: цвета фона/текста, стиль заголовка, декор.",
+      "required": ["background", "foreground"],
+      "properties": {
+        "background": {
+          "type": "string",
+          "description": "Цвет фона (hex, alias или 'image' для full-bleed)"
+        },
+        "foreground": {
+          "type": "string",
+          "description": "Основной цвет текста (hex или alias)"
+        },
+        "titleStyle": {
+          "type": "string",
+          "description": "Alias на размер шрифта заголовка (например {font.size.hero})"
+        },
+        "overlay": {
+          "type": "string",
+          "description": "CSS-градиент для оверлея (только для full-bleed)"
+        },
+        "decor": {
+          "type": "array",
+          "items": { "type": "string" },
+          "description": "Список декоративных элементов ('none', 'noise', 'grain', 'geometry')"
+        },
+        "$rationale": { "type": "string" }
+      },
+      "additionalProperties": true
+    }
+  }
+}

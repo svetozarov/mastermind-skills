@@ -1,0 +1,26 @@
+{
+  "name": "mastermind-deck-tokens",
+  "version": "1.0.0",
+  "description": "Style Dictionary v4 build-скрипт для генерации Tailwind config и CSS custom properties из W3C DTCG tokens.json",
+  "type": "module",
+  "scripts": {
+    "build-tokens": "node scripts/build-tokens.mjs",
+    "build-tokens:example": "node scripts/build-tokens.mjs examples/tokens.example.json deck-example",
+    "test": "node --check scripts/build-tokens.mjs && echo 'Syntax OK'"
+  },
+  "dependencies": {
+    "style-dictionary": "^4.3.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "keywords": [
+    "design-tokens",
+    "dtcg",
+    "style-dictionary",
+    "tailwind",
+    "mastermind"
+  ],
+  "license": "UNLICENSED",
+  "private": true
+}

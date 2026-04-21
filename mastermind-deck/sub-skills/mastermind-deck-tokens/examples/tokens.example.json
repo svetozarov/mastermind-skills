@@ -1,0 +1,253 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "$metadata": {
+    "generator": "mastermind-deck-tokens extract-style.py",
+    "sources": ["pdfplumber", "colorthief", "claude-vision"],
+    "theme": "dark-accent",
+    "$description": "Пример токенов для dark-accent темы: тёплый кремовый paper (#F5F3EE), угольный ink (#0A0A0A), кирпичный акцент (#D64518), шрифт Helvetica. Воспроизводит структуру спецификации mastermind-deck-tokens.md."
+  },
+
+  "color": {
+    "ink": {
+      "$type": "color",
+      "$value": "#0A0A0A",
+      "$rationale": "Найден в 5/5 скриншотах как основной текстовый цвет. Canonical из PDF: #0A0A0A (частота 1842). Практически чёрный с лёгкой теплотой — не чистый #000000."
+    },
+    "paper": {
+      "$type": "color",
+      "$value": "#F5F3EE",
+      "$rationale": "Найден в 4/5 скриншотах как фон контентных слайдов. ColorThief: #F4F2ED (1 screenshot), #F5F3EE (3 screenshots) — усреднено в пользу более частого. Тёплый кремовый, не белый."
+    },
+    "accent": {
+      "primary": {
+        "$type": "color",
+        "$value": "#D64518",
+        "$rationale": "Кирпично-оранжевый акцент наблюдался в 3/5 скриншотах на кнопках и декоративных элементах. Canonical из PDF: #D64518 (упоминается как brand orange). System-level по правилу ≥2 скриншотов."
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": "#4A4744",
+        "$rationale": "Тёмно-серый использовался как второстепенный акцент (бордюры, вторичные элементы). Наблюдался в 2/5 скриншотах. Не core — скорее поддерживающий."
+      }
+    },
+    "neutral": {
+      "200": {
+        "$type": "color",
+        "$value": "#CFCAC1",
+        "$rationale": "Светло-серый для разделителей и неактивных элементов. Наблюдался в 3/5 скриншотах. ColorThief подтвердил присутствие близкого тона (#CCC8BF) в palette."
+      },
+      "400": {
+        "$type": "color",
+        "$value": "#8C8884",
+        "$rationale": "Средне-серый для muted текста и иконок. Интерполирован между neutral-200 и neutral-600, подтверждён на 2 скриншотах."
+      },
+      "600": {
+        "$type": "color",
+        "$value": "#4A4744",
+        "$rationale": "Тёмно-серый для вторичного текста и меток. Наблюдался на 3/5 скриншотах. Совпадает с accent.secondary — намеренно: в этой системе вторичный текст и вторичный акцент одного тона."
+      },
+      "900": {
+        "$type": "color",
+        "$value": "#1A1815",
+        "$rationale": "Почти чёрный для тёмных поверхностей (hover-состояния, borders на тёмном фоне). Наблюдался на 1/5 скриншотов — accent/decorative, не core."
+      }
+    }
+  },
+
+  "font": {
+    "display": {
+      "$type": "fontFamily",
+      "$value": "Helvetica, Arial, sans-serif",
+      "$rationale": "pdfplumber определил 'HelveticaNeue-Bold' как топ-1 шрифт по частоте (2341 символ). Fallback-таблица: Neue Haas Grotesk → Helvetica. Шрифт геометрический неогротеск с нейтральным характером."
+    },
+    "text": {
+      "$type": "fontFamily",
+      "$value": "Helvetica, Arial, sans-serif",
+      "$rationale": "pdfplumber определил 'HelveticaNeue' (regular) как топ-2 по частоте (5109 символов). Та же семья, что display — единая типографическая система."
+    },
+    "mono": {
+      "$type": "fontFamily",
+      "$value": "Courier New, monospace",
+      "$rationale": "Моноширинный шрифт наблюдался в 1/5 скриншотах на блоке данных (таблица). Выглядит как IBM Plex Mono — fallback: Courier New. Не core, только для data-контекста."
+    },
+    "size": {
+      "hero": {
+        "$type": "dimension",
+        "$value": { "value": 120, "unit": "px" },
+        "$rationale": "Визуальная оценка: заголовок cover-слайда занимает ~11% высоты холста 1080px → 118px. Округлено до 120px (кратно 8pt baseline)."
+      },
+      "h1": {
+        "$type": "dimension",
+        "$value": { "value": 56, "unit": "px" },
+        "$rationale": "Section title на section-divider слайдах. Визуальная оценка ~5% высоты. pdfplumber: fontSize 40pt → 53px @96dpi. Округлено до 56px (кратно 8)."
+      },
+      "h2": {
+        "$type": "dimension",
+        "$value": { "value": 40, "unit": "px" },
+        "$rationale": "Подзаголовки на content-слайдах. pdfplumber: fontSize 30pt → 40px. Совпадает с визуальной оценкой."
+      },
+      "body": {
+        "$type": "dimension",
+        "$value": { "value": 20, "unit": "px" },
+        "$rationale": "Основной текст. pdfplumber: fontSize 15pt → 20px. Наиболее частый размер (5109 символов)."
+      },
+      "caption": {
+        "$type": "dimension",
+        "$value": { "value": 14, "unit": "px" },
+        "$rationale": "Подписи, источники. pdfplumber: fontSize 10.5pt → 14px. Наблюдался в footnote-зоне."
+      },
+      "micro": {
+        "$type": "dimension",
+        "$value": { "value": 11, "unit": "px" },
+        "$rationale": "Метки, теги, очень мелкий текст. Оценка по визуальной пропорции. Needs ColorThief verification для точности."
+      }
+    },
+    "tracking": {
+      "display": {
+        "$type": "string",
+        "$value": "-0.03em",
+        "$rationale": "Заголовки имеют слегка сжатый кернинг — типично для неогротесков при крупных размерах. Визуальная оценка: буквы чуть ближе стандартного."
+      },
+      "caps": {
+        "$type": "string",
+        "$value": "0.08em",
+        "$rationale": "Все upper-case метки (теги категорий, labels) имеют расширенный трекинг. Наблюдался на 3/5 скриншотах."
+      },
+      "body": {
+        "$type": "string",
+        "$value": "0em",
+        "$rationale": "Основной текст — нейтральный трекинг, без изменений."
+      }
+    }
+  },
+
+  "grid": {
+    "canvas": {
+      "$type": "string",
+      "$value": "1920x1080",
+      "$rationale": "Стандарт Full HD для презентаций. html2pptx LAYOUT_16x9 = 720pt × 405pt → рендерим в 1920×1080px."
+    },
+    "margin": {
+      "$type": "dimension",
+      "$value": { "value": 96, "unit": "px" },
+      "$rationale": "Левый/правый отступ контентной зоны от края слайда. Визуальная оценка: ~5% ширины 1920px = 96px. Кратно 8pt baseline."
+    },
+    "columns": {
+      "$type": "number",
+      "$value": 12,
+      "$rationale": "12-колоночная сетка — стандарт для гибких layout-ов. Наблюдалось в 3/5 скриншотах 2-колоночное деление (6+6)."
+    },
+    "gutter": {
+      "$type": "dimension",
+      "$value": { "value": 24, "unit": "px" },
+      "$rationale": "Зазор между колонками. Визуальная оценка по gap между контентными блоками. Кратно 8pt."
+    },
+    "baseline": {
+      "$type": "dimension",
+      "$value": { "value": 8, "unit": "px" },
+      "$rationale": "8pt базовая сетка — гипотеза подтверждена: все font-size и margin кратны 8."
+    }
+  },
+
+  "radius": {
+    "none": {
+      "$type": "dimension",
+      "$value": { "value": 0, "unit": "px" },
+      "$rationale": "Основные контейнеры и блоки — без скругления. Это dark-accent тема с минималистичной геометрией."
+    },
+    "sm": {
+      "$type": "dimension",
+      "$value": { "value": 3, "unit": "px" },
+      "$rationale": "Мелкие элементы (теги, badges). Наблюдался на 1/5 скриншотах."
+    },
+    "md": {
+      "$type": "dimension",
+      "$value": { "value": 6, "unit": "px" },
+      "$rationale": "Карточки и image-frame. Наблюдался на 2/5 скриншотах. System-level по правилу ≥2."
+    },
+    "lg": {
+      "$type": "dimension",
+      "$value": { "value": 12, "unit": "px" },
+      "$rationale": "Крупные блоки (feature cards). Наблюдался на 1/5 — accent/decorative, не core."
+    },
+    "pill": {
+      "$type": "dimension",
+      "$value": { "value": 9999, "unit": "px" },
+      "$rationale": "Для pill-кнопок и rounded labels. Не наблюдался в скриншотах, добавлен как стандартный токен пайплайна."
+    }
+  },
+
+  "shadow": {
+    "none": {
+      "$type": "string",
+      "$value": "none",
+      "$rationale": "Большинство элементов (4/5 скриншотов) не имеют теней — плоский дизайн в духе Swiss typography."
+    },
+    "subtle": {
+      "$type": "string",
+      "$value": "0 1px 2px rgba(0,0,0,.06)",
+      "$rationale": "Лёгкая тень для разделения карточек на светлом фоне. Наблюдалась на 1/5 скриншотах."
+    },
+    "card": {
+      "$type": "string",
+      "$value": "0 4px 16px rgba(0,0,0,.10)",
+      "$rationale": "Средняя тень для floating элементов. Не наблюдалась — добавлена как стандарт пайплайна."
+    },
+    "elevated": {
+      "$type": "string",
+      "$value": "0 8px 32px rgba(0,0,0,.16)",
+      "$rationale": "Глубокая тень для модалей / popover. Не наблюдалась — добавлена как стандарт пайплайна."
+    }
+  },
+
+  "slide": {
+    "aspectRatio": {
+      "$type": "string",
+      "$value": "16/9",
+      "$rationale": "Стандарт для всех слайдов Mastermind Research Wednesday. Full HD 16:9."
+    },
+    "safeArea": {
+      "$type": "dimension",
+      "$value": { "value": 64, "unit": "px" },
+      "$rationale": "Минимальный отступ от края до контента. Защищает от обрезки проектора. 64px = 8 × baseline."
+    },
+    "layouts": {
+      "cover": {
+        "background": "{color.ink}",
+        "foreground": "{color.paper}",
+        "titleStyle": "{font.size.hero}",
+        "decor": ["none"],
+        "$rationale": "Тёмный cover по sandwich-structure правилу: ink-фон даёт вес и отличает от контентных слайдов. Наблюдался на всех 5 скриншотах."
+      },
+      "section-divider": {
+        "background": "{color.ink}",
+        "foreground": "{color.paper}",
+        "titleStyle": "{font.size.h1}",
+        "$rationale": "Тёмный разделитель поддерживает ритм — чередует тёмные паузы со светлым контентом. Наблюдался на 2/5 скриншотах."
+      },
+      "content": {
+        "background": "{color.paper}",
+        "foreground": "{color.ink}",
+        "$rationale": "Основной тип слайда. Кремовый paper-фон вместо белого — снижает усталость при долгом просмотре. Наблюдался на 3/5 скриншотах."
+      },
+      "full-bleed": {
+        "background": "image",
+        "foreground": "{color.paper}",
+        "overlay": "{slide.decor.overlayGradient}",
+        "$rationale": "Full-bleed с затемняющим градиентом снизу. Наблюдался на 1/5 скриншотах — accent, не core."
+      }
+    },
+    "decor": {
+      "noiseOpacity": {
+        "$type": "number",
+        "$value": 0.04,
+        "$rationale": "Очень лёгкий зернистый шум на paper-фоне для органичности. Наблюдался на 3/5 скриншотах как едва заметная текстура. 4% opacity — на грани видимости."
+      },
+      "overlayGradient": {
+        "$type": "string",
+        "$value": "linear-gradient(180deg, transparent 40%, rgba(10,10,10,.6) 100%)",
+        "$rationale": "Затемняющий градиент для full-bleed слайдов с фото. Обеспечивает контраст текста в нижней зоне. Наблюдался на 1/5 скриншотах."
+      }
+    }
+  }
+}

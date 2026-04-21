@@ -1,17 +1,16 @@
 ---
 name: mastermind-pptx
 description: >
-  Генерирует профессиональные PPTX-презентации через python-pptx + профессиональный шаблон.
-  v4: все дизайн-токены из design-system.json, координаты из slide_layouts, расширенный QA.
-  Авто-нумерация страниц, редактируемый текст, speaker notes, кириллица.
+  Генерирует профессиональные PPTX-презентации. v8: четыре движка.
+  gamma-pro (REST API + автоскачивание), gamma-free (MCP + ручное скачивание),
+  html-deck (HTML-first + vision-loop через skill mastermind-deck — рекомендуемый для качества),
+  local (python-pptx — legacy, базовый дизайн).
   Вызывается оркестратором mastermind. Не для прямого вызова.
-  Три режима: gamma-pro (REST API + автоскачивание), gamma-free (MCP + ручное скачивание),
-  local (python-pptx). Оркестратор передаёт engine.
 ---
 
-# Mastermind PPTX — генератор презентаций (v7: три движка)
+# Mastermind PPTX — генератор презентаций (v8: четыре движка)
 
-Три режима генерации, выбирает пользователь через оркестратор:
+Четыре режима генерации, выбирает пользователь через оркестратор:
 
 ### 1. Gamma Pro (`engine = "gamma-pro"`)
 - Gamma MCP-коннектор для генерации + REST API для автоскачивания PPTX
@@ -25,26 +24,37 @@ description: >
 - Требуется: аккаунт Gamma + MCP-коннектор (API-ключ не нужен)
 - Постобработка через python-pptx: speaker notes, фото, скриншоты, контакты
 
-### 3. Локальный (`engine = "local"`)
+### 3. HTML-Deck (`engine = "html-deck"`) — **рекомендуемый для качества**
+- HTML-first пайплайн через под-скилл `mastermind-deck`
+- Слой 1: extract-style.py → tokens.json в W3C DTCG из референсов (PDF-брендбук, скриншоты, URL)
+- Слой 2: 17 overflow-safe HTML-partial (12 универсальных + 5 архитектурных), container queries, clamp, Safe Slots
+- Слой 3: vision-loop — детерминистический overflow-detector (0 img-tokens) + мультимодальный critic + fixer-каскад 4 уровней, 3 итерации Sonnet + 2 Opus
+- Export: html2pptx.js для editable PPTX или screenshot (Playwright → addImage) для font_fidelity: strict
+- Требуется: Node 20+, Python 3.11+, Playwright, Anthropic API-ключ в `.env`
+- Полностью офлайн после установки, без ограничений по слайдам, дизайн под референсы клиента
+
+### 4. Локальный (`engine = "local"`) — legacy
 - python-pptx + дизайн-система + профессиональный шаблон
 - Полный контроль, без ограничений по слайдам, работает офлайн
-- Дизайн базовый (не рекомендуется, если доступна Gamma)
+- **Дизайн базовый** — используй только если html-deck невозможен (нет Node/Playwright)
 - Ничего дополнительного не нужно
 
 ---
 
 ## Выбор движка
 
-Оркестратор передаёт параметр `engine`: `gamma-pro`, `gamma-free` или `local`.
+Оркестратор передаёт параметр `engine`: `gamma-pro`, `gamma-free`, `html-deck` или `local`.
 
 | Engine | Описание |
 |---|---|
 | `gamma-pro` | Gamma Pro: REST API polling + автоскачивание PPTX, до 60 слайдов, без водяного знака, премиум AI-модели |
 | `gamma-free` | Gamma Free/Plus: MCP-коннектор, ручное скачивание PPTX, до 10-20 слайдов, водяной знак на Free |
-| `local` | python-pptx: полный контроль, без ограничений, базовый дизайн |
+| `html-deck` | **HTML-first + vision-loop**: tokens из референсов → компонентная библиотека → vision-QA → html2pptx. Качество близко к ручному дизайну |
+| `local` | python-pptx: полный контроль, без ограничений, базовый дизайн (legacy) |
 
 Если `engine` = `gamma-pro`, используй раздел **Gamma Engine** с Фазой 3A (REST API).
 Если `engine` = `gamma-free`, используй раздел **Gamma Engine** с Фазой 3B (ручное скачивание).
+Если `engine` = `html-deck`, используй раздел **HTML-Deck Engine** (делегирование на skill `mastermind-deck`).
 Если `engine` = `local`, используй раздел **Local Engine**.
 
 ---
@@ -500,7 +510,111 @@ python <путь-к-skills>/mastermind-pptx/tools/verify-slides.py \
 ---
 
 ## ═══════════════════════════════════════════
-## LOCAL ENGINE (python-pptx + design system)
+## HTML-DECK ENGINE (HTML-first + vision-loop)
+## ═══════════════════════════════════════════
+
+Если `engine == "html-deck"` — **полностью делегируй работу под-скиллу `mastermind-deck`**. Не запускай python-pptx, не используй design-system.json, не открывай шаблоны из `temp/templates/`. Весь пайплайн живёт в `skills/mastermind-deck/` и организован как 6 фаз.
+
+### Phase 0 — инфраструктура
+
+Перед запуском проверь:
+1. Node.js ≥ 20: `node --version`
+2. Python ≥ 3.11: `python --version`
+3. Playwright: `npx playwright --version` (если нет — `npx playwright install chromium`)
+4. Anthropic API-ключ в `.env`: `ANTHROPIC_API_KEY=...`
+5. Если нет — СТОП, скажи пользователю и дай команду для CMD:
+   ```
+   echo ANTHROPIC_API_KEY=ВСТАВЬ_СЮДА_КЛЮЧ >> P:\Masterminder\.env
+   ```
+
+Если `--engine html-deck` задан, а инфраструктуры нет — **не откатывайся на local**, а попроси установить. Local — только если пользователь явно выбрал его или если нет возможности установить Node/Playwright.
+
+### Phase 1 — extract tokens (делегация на mastermind-deck-tokens)
+
+Вход: папка `references/` с PDF-брендбуком / скриншотами слайдов / URL конкурентов.
+
+```bash
+cd skills/mastermind-deck/sub-skills/mastermind-deck-tokens
+python scripts/extract-style.py \
+  --refs P:/Masterminder/projects/<name>/references/ \
+  --out  P:/Masterminder/projects/<name>/tokens.json \
+  --brief P:/Masterminder/projects/<name>/brief.yaml
+node scripts/build-tokens.mjs \
+  --tokens P:/Masterminder/projects/<name>/tokens.json \
+  --out-css P:/Masterminder/projects/<name>/globals.css \
+  --out-tw  P:/Masterminder/projects/<name>/tailwind.config.js
+```
+
+Результат: `tokens.json` в W3C DTCG с обязательной секцией `slide.*`, `globals.css`, `tailwind.config.js`.
+
+### Phase 2 — обязательная pre-generation декларация
+
+Перед тем, как сгенерировать хоть один HTML-файл, **ты обязан вывести 5-строчный план**:
+
+```
+DESIGN DECISIONS:
+1. Type: <pitch / album / general>
+2. Preset from tokens.json: <sandwich light / sandwich dark / editorial / brutalist>
+3. Accent hex: <#RRGGBB from tokens>
+4. Motif: <ONE visual motif for the whole deck>
+5. Typography: <display/text pair from tokens>
+
+REFLEX-DEFAULTS I AM REJECTING:
+- <list 3–5 items I might have defaulted to, explicitly rejecting each>
+```
+
+Без декларации — **не приступай к генерации**. Если декларация противоречит anti-slop-checklist — перепиши её.
+
+### Phase 3 — generate HTML (делегация на mastermind-deck-layout)
+
+1. Прочитай `skills/mastermind-deck/components/layouts-registry.json` — метаданные 17 layout-ов.
+2. Для каждого слайда из `слайды.md` выбери layout по эвристике из `anti-slop-checklist.md`.
+3. Сгенерируй `slides/slide-01.html ... slide-NN.html` через `partial-loader.mjs`: читает partial из `components/<kind>.html`, подставляет `data-slot` значения, применяет `base.css` + `globals.css`.
+4. Каждый слайд — standalone HTML-файл с `<link href="globals.css">` и `<link href="base.css">`, размер канваса строго 1920×1080.
+
+### Phase 4 — vision-loop (делегация на mastermind-deck-visionloop)
+
+```bash
+cd skills/mastermind-deck/scripts
+npm install           # первый раз
+npx playwright install chromium   # первый раз
+node run-vision-loop.mjs \
+  --slides-dir P:/Masterminder/projects/<name>/slides/ \
+  --out-audit  P:/Masterminder/projects/<name>/audit.json \
+  --max-iter 3 \
+  --budget-tokens 100000
+```
+
+Loop per slide: detector (0 img-tokens) → critic (только при detector OK) → fixer (каскад 4 уровней: clamp → line-clamp → layout switch → split). 3 итерации Sonnet 4.6; если не сошлось — 2 на Opus 4.7; если всё ещё нет — `needs_human_review: true`.
+
+**Не сокращай итерации, не пропускай слайды, не редактируй audit вручную.**
+
+### Phase 5 — export (делегация на mastermind-deck/scripts/assemble-deck.mjs)
+
+```bash
+cd skills/mastermind-deck/scripts
+node fonts-check.mjs --slides-dir P:/Masterminder/projects/<name>/slides/
+node assemble-deck.mjs \
+  --project P:/Masterminder/projects/<name>/ \
+  --out     P:/Masterminder/projects/<name>/deck.pptx
+```
+
+Миксует editable (html2pptx.js) и screenshot (Playwright → addImage) пути. Screenshot-режим — только для слайдов с `font_fidelity: strict` и не-web-safe шрифтами.
+
+### Phase 6 — финальная визуальная верификация
+
+Несмотря на vision-loop — **обязательно** прогоняй золотое правило (см. ниже) на финальном `.pptx`:
+1. Экспортируй все слайды в PNG через `temp/verify-slides.py` (PowerPoint COM)
+2. Прочитай **каждый** PNG через Read tool по одному
+3. Отчёт C/M/R по каждому, сводная таблица
+4. Если хотя бы один FAIL — итерируй
+
+vision-loop валидировал HTML в браузере; здесь проверяем, что html2pptx/screenshot-export не внёс искажений.
+
+---
+
+## ═══════════════════════════════════════════
+## LOCAL ENGINE (python-pptx + design system) — legacy
 ## ═══════════════════════════════════════════
 
 ---

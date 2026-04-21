@@ -1,0 +1,38 @@
+<!--
+  quote.html — Single quote up to 300 chars, line-clamp 6, author in caps
+  Slots:
+    data-slot="quote"   — required, max 300 chars
+    data-slot="author"  — required, max 60 chars (name + role)
+    data-slot="source"  — optional, max 40 chars (book, interview, year)
+  Example: quote="Архитектура — это замёрзшая музыка", author="Фридрих Шеллинг"
+-->
+<section class="slide" aria-label="Quote slide">
+
+  <div class="slide__inner" style="justify-content: center; max-width: 75%;">
+
+    <figure class="quote-block">
+
+      <span class="quote-block__mark" aria-hidden="true">&ldquo;</span>
+
+      <blockquote
+        class="quote-block__text slot line-clamp-6"
+        data-slot="quote"
+      >Цитата до 300 символов. Текст цитаты здесь.</blockquote>
+
+      <figcaption class="flex-col" style="gap: 0.25rem; margin-top: 1rem;">
+        <span
+          class="quote-block__author t-micro slot"
+          data-slot="author"
+        >Автор Цитаты</span>
+        <span
+          class="t-caption slot"
+          data-slot="source"
+          style="color: var(--color-neutral-600);"
+        ></span>
+      </figcaption>
+
+    </figure>
+
+  </div>
+
+</section>

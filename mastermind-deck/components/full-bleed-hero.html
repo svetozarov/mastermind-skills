@@ -1,0 +1,54 @@
+<!--
+  full-bleed-hero.html — Full 1920×1080 image with content in lower third over gradient
+  Slots:
+    data-slot="image"    — required, src path or URL (pre-upscaled to 3840×2160 recommended)
+    data-slot="alt"      — required, image alt text
+    data-slot="title"    — required, max 80 chars
+    data-slot="body"     — optional, max 200 chars
+    data-slot="caption"  — optional, max 40 chars (small label top-left)
+  Example: title="Новый общественный центр", body="Открытие — июнь 2026"
+-->
+<section class="slide" aria-label="Full bleed hero slide">
+
+  <!-- Full-bleed background image -->
+  <img
+    class="img-full-bleed"
+    data-slot="image"
+    src=""
+    alt=""
+    data-slot-alt="alt"
+    loading="eager"
+  />
+
+  <!-- Overlay gradient: transparent top → dark bottom -->
+  <div class="overlay-gradient" aria-hidden="true"></div>
+
+  <!-- Optional top-left caption -->
+  <div style="position: absolute; top: var(--slide-safe-area); left: var(--slide-margin); z-index: 2;">
+    <span
+      class="t-micro slot"
+      data-slot="caption"
+      style="color: var(--color-paper); opacity: 0.75;"
+    ></span>
+  </div>
+
+  <!-- Content in lower third -->
+  <div class="img-content">
+    <div class="flex-col" style="gap: 1.25rem; max-width: 65%;">
+
+      <h2
+        class="t-h1 slot line-clamp-3"
+        data-slot="title"
+        style="color: var(--color-paper);"
+      >Заголовок над изображением</h2>
+
+      <p
+        class="t-body slot line-clamp-3"
+        data-slot="body"
+        style="color: var(--color-neutral-200);"
+      ></p>
+
+    </div>
+  </div>
+
+</section>

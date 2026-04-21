@@ -1,0 +1,46 @@
+<!--
+  agenda.html — Numbered flush-left agenda list, mono numbers, current item highlighted
+  Slots:
+    data-slot="title"        — optional, max 40 chars (e.g. "Повестка")
+    data-slot="item-N-num"  — item number, max 3 chars (e.g. "01")
+    data-slot="item-N-text" — item label, max 60 chars
+    Add class "is-current" to the relevant <li> to highlight active section
+  Example: 4-item agenda, item 2 is current
+-->
+<section class="slide" aria-label="Agenda slide">
+
+  <div class="slide__inner" style="justify-content: center; gap: 3rem;">
+
+    <h2
+      class="t-micro slot"
+      data-slot="title"
+      style="color: var(--color-neutral-600); letter-spacing: var(--tracking-caps);"
+    >Повестка</h2>
+
+    <ol class="numbered-list slot" data-slot="agenda-list" style="gap: 1.75rem;">
+
+      <li>
+        <span class="numbered-list__num t-mono" data-slot="item-1-num">01</span>
+        <span class="numbered-list__text t-h2 slot line-clamp-2" data-slot="item-1-text">Первый пункт</span>
+      </li>
+
+      <li>
+        <span class="numbered-list__num t-mono" data-slot="item-2-num">02</span>
+        <span class="numbered-list__text t-h2 slot line-clamp-2" data-slot="item-2-text">Второй пункт</span>
+      </li>
+
+      <li>
+        <span class="numbered-list__num t-mono" data-slot="item-3-num">03</span>
+        <span class="numbered-list__text t-h2 slot line-clamp-2" data-slot="item-3-text">Третий пункт</span>
+      </li>
+
+      <li>
+        <span class="numbered-list__num t-mono" data-slot="item-4-num">04</span>
+        <span class="numbered-list__text t-h2 slot line-clamp-2" data-slot="item-4-text">Четвёртый пункт</span>
+      </li>
+
+    </ol>
+
+  </div>
+
+</section>

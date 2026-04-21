@@ -1,0 +1,111 @@
+<!--
+  before-after.html — 50/50 split, full-bleed images, EXISTING/PROPOSED labels
+  Slots:
+    data-slot="before-image"   — required, src for "before" image
+    data-slot="before-alt"     — required, alt text
+    data-slot="before-label"   — optional, max 20 chars (default: "EXISTING")
+    data-slot="before-caption" — optional, max 60 chars
+    data-slot="after-image"    — required, src for "after" image
+    data-slot="after-alt"      — required, alt text
+    data-slot="after-label"    — optional, max 20 chars (default: "PROPOSED")
+    data-slot="after-caption"  — optional, max 60 chars
+    data-slot="title"          — optional, max 60 chars (top-center label)
+  Both images: object-fit cover, aspect-ratio 1:1 via container height
+  Example: before="existing courtyard photo", after="rendered proposal"
+-->
+<section class="slide" aria-label="Before after comparison slide">
+
+  <!-- Optional title bar -->
+  <div style="
+    position: absolute;
+    top: var(--slide-safe-area);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+  ">
+    <span
+      class="t-micro slot"
+      data-slot="title"
+      style="color: var(--color-ink); background-color: var(--color-paper); padding: 0.375rem 1rem; display: block; white-space: nowrap;"
+    ></span>
+  </div>
+
+  <div class="before-after">
+
+    <!-- Before / Existing -->
+    <div class="before-after__side">
+
+      <img
+        class="img-full-bleed"
+        data-slot="before-image"
+        src=""
+        alt=""
+        data-slot-alt="before-alt"
+        loading="eager"
+      />
+
+      <!-- Label: top-left with contrast backing -->
+      <div class="before-after__label">
+        <span
+          class="t-micro slot"
+          data-slot="before-label"
+        >EXISTING</span>
+      </div>
+
+      <!-- Caption: bottom-left -->
+      <div style="
+        position: absolute;
+        bottom: var(--slide-safe-area);
+        left: var(--slide-safe-area);
+        z-index: 2;
+        max-width: 70%;
+      ">
+        <span
+          class="t-caption slot line-clamp-2"
+          data-slot="before-caption"
+          style="color: var(--color-paper); text-shadow: 0 1px 3px rgba(0,0,0,0.6);"
+        ></span>
+      </div>
+
+    </div>
+
+    <!-- After / Proposed -->
+    <div class="before-after__side">
+
+      <img
+        class="img-full-bleed"
+        data-slot="after-image"
+        src=""
+        alt=""
+        data-slot-alt="after-alt"
+        loading="eager"
+      />
+
+      <!-- Label: top-left with contrast backing -->
+      <div class="before-after__label">
+        <span
+          class="t-micro slot"
+          data-slot="after-label"
+        >PROPOSED</span>
+      </div>
+
+      <!-- Caption: bottom-left -->
+      <div style="
+        position: absolute;
+        bottom: var(--slide-safe-area);
+        left: var(--slide-safe-area);
+        z-index: 2;
+        max-width: 70%;
+      ">
+        <span
+          class="t-caption slot line-clamp-2"
+          data-slot="after-caption"
+          style="color: var(--color-paper); text-shadow: 0 1px 3px rgba(0,0,0,0.6);"
+        ></span>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

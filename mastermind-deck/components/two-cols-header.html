@@ -1,0 +1,60 @@
+<!--
+  two-cols-header.html — Shared header spanning two columns below it
+  Slots:
+    data-slot="title"       — required, max 80 chars (spans full width)
+    data-slot="left-body"   — required, max 400 chars
+    data-slot="right-body"  — required, max 400 chars
+    data-slot="left-label"  — optional, max 30 chars (small label above left col)
+    data-slot="right-label" — optional, max 30 chars (small label above right col)
+  Example: title="Сравнение подходов", left-label="Классический", right-label="Итерационный"
+-->
+<section class="slide" aria-label="Two columns with header slide">
+
+  <div class="slide__inner" style="justify-content: center; gap: 3rem;">
+
+    <!-- Shared header -->
+    <h2
+      class="t-h1 slot line-clamp-2"
+      data-slot="title"
+    >Общий заголовок над колонками</h2>
+
+    <!-- Two columns -->
+    <div class="cols-6-6 slot" data-slot="columns" style="width: 100%; align-items: start; gap: 4rem;">
+
+      <!-- Left -->
+      <div class="flex-col slot" data-slot="left-col" style="gap: 1rem; container-type: inline-size; border-top: 2px solid var(--color-neutral-200); padding-top: 1.5rem;">
+
+        <span
+          class="t-micro slot"
+          data-slot="left-label"
+          style="color: var(--color-accent);"
+        ></span>
+
+        <p
+          class="t-body slot line-clamp-6"
+          data-slot="left-body"
+        >Левый текст — до 400 символов.</p>
+
+      </div>
+
+      <!-- Right -->
+      <div class="flex-col slot" data-slot="right-col" style="gap: 1rem; container-type: inline-size; border-top: 2px solid var(--color-neutral-200); padding-top: 1.5rem;">
+
+        <span
+          class="t-micro slot"
+          data-slot="right-label"
+          style="color: var(--color-accent);"
+        ></span>
+
+        <p
+          class="t-body slot line-clamp-6"
+          data-slot="right-body"
+        >Правый текст — до 400 символов.</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

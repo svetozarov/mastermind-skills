@@ -1,0 +1,54 @@
+<!--
+  cover.html — Opening slide: large flush-left title + date/code line
+  Slots:
+    data-slot="title"   — required, max 80 chars, Fitty hook
+    data-slot="date"    — optional, max 30 chars (e.g. "21 апреля 2026")
+    data-slot="code"    — optional, max 20 chars (e.g. "MR-042")
+    data-slot="subtitle"— optional, max 60 chars
+  Theme: dark (ink background, paper text) — sandwich structure
+  Example: title="Как мы переосмыслили дворовое пространство", date="21 апреля 2026"
+-->
+<section class="slide slide--dark" aria-label="Cover slide">
+
+  <!-- Full-slide inner: flex column, space between top badge and bottom meta -->
+  <div class="slide__inner" style="justify-content: space-between;">
+
+    <!-- Top: optional code / event marker -->
+    <div class="flex-row" style="align-items: center; gap: 1.5rem;">
+      <span
+        class="t-micro slot"
+        data-slot="code"
+        style="color: var(--color-neutral-600);"
+      >Research Mastermind</span>
+    </div>
+
+    <!-- Centre: main title block -->
+    <div class="flex-col" style="gap: 2rem; max-width: 72%;">
+      <!-- Fitty hook: data-fitty attribute signals partial-loader to inject script -->
+      <h1
+        class="t-hero slot"
+        data-slot="title"
+        data-fitty="true"
+        style="color: var(--color-paper);"
+      >Заголовок выступления</h1>
+
+      <span
+        class="t-caption slot line-clamp-2"
+        data-slot="subtitle"
+        style="color: var(--color-neutral-200); max-width: 52rem;"
+      ></span>
+    </div>
+
+    <!-- Bottom: date + horizontal rule -->
+    <div class="flex-col" style="gap: 1rem;">
+      <div class="rule"></div>
+      <span
+        class="t-micro slot"
+        data-slot="date"
+        style="color: var(--color-neutral-200);"
+      >Дата</span>
+    </div>
+
+  </div>
+
+</section>

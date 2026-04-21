@@ -1,0 +1,52 @@
+<!--
+  full-bleed-render.html — Architectural render full-slide, metadata caption bottom-left
+  Slots:
+    data-slot="image"   — required, src (pre-upscaled to 3840×2160 via Sharp recommended)
+    data-slot="alt"     — required, image alt text
+    data-slot="index"   — optional, max 4 chars (e.g. "01")
+    data-slot="desc"    — optional, max 60 chars (e.g. "South facade at dusk")
+    data-slot="year"    — optional, max 8 chars (e.g. "2025")
+  Caption format: "01 / South facade at dusk / 2025" — 11px uppercase, tracking 0.08em
+  object-position is intentionally center; override via data-position attribute if needed
+  Example: index="02", desc="Вид с внутреннего двора", year="2026"
+-->
+<section class="slide" aria-label="Full bleed architectural render" data-position="center">
+
+  <!-- Full-bleed render image: object-fit cover, object-position center -->
+  <img
+    class="img-full-bleed"
+    data-slot="image"
+    src=""
+    alt=""
+    data-slot-alt="alt"
+    loading="eager"
+    style="object-position: center;"
+  />
+
+  <!-- Metadata caption: bottom-left, above safe-area baseline -->
+  <div style="
+    position: absolute;
+    bottom: var(--slide-safe-area);
+    left: var(--slide-margin);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  ">
+    <span
+      class="meta-caption slot"
+      data-slot="index"
+    >01</span>
+    <span class="meta-caption" aria-hidden="true" style="opacity: 0.4;">/</span>
+    <span
+      class="meta-caption slot line-clamp-2"
+      data-slot="desc"
+    >Описание вида</span>
+    <span class="meta-caption" aria-hidden="true" style="opacity: 0.4;">/</span>
+    <span
+      class="meta-caption slot"
+      data-slot="year"
+    >2026</span>
+  </div>
+
+</section>

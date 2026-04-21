@@ -1,0 +1,24 @@
+{
+  "name": "mastermind-deck-scripts",
+  "version": "1.0.0",
+  "description": "Vision-loop validation, export, and PPTX assembly scripts for the mastermind-deck HTML slide engine.",
+  "type": "module",
+  "scripts": {
+    "run-vision-loop":    "node run-vision-loop.mjs",
+    "export:editable":    "node html2pptx-build.mjs",
+    "export:screenshot":  "node screenshot-export.mjs",
+    "export:assemble":    "node assemble-deck.mjs",
+    "check:fonts":        "node export/fonts-check.mjs"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk":  "^0.30.0",
+    "node-html-parser":   "^7.0.0",
+    "playwright":         "^1.48.0",
+    "pptxgenjs":          "^3.12.0",
+    "sharp":              "^0.33.0",
+    "yaml":               "^2.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}

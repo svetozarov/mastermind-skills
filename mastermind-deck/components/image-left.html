@@ -1,0 +1,58 @@
+<!--
+  image-left.html — 4:3 image left + longer thesis text right (mirror of image-right)
+  Slots:
+    data-slot="title"   — required, max 80 chars
+    data-slot="body"    — required, max 400 chars
+    data-slot="image"   — required, src path or URL
+    data-slot="alt"     — required, image alt text
+    data-slot="caption" — optional, max 60 chars (image caption)
+  Use when: image + long body (>=200 chars) → image-left heuristic
+  Example: title="Анализ транспортной связности", body="Территория ограничена..."
+-->
+<section class="slide" aria-label="Image left slide">
+
+  <div class="slide__inner" style="justify-content: center;">
+
+    <div class="cols-5-7 slot" data-slot="columns" style="width: 100%; align-items: center; gap: 5rem;">
+
+      <!-- Left: image 4:3 -->
+      <div class="flex-col slot" data-slot="image-col" style="gap: 0.75rem; min-width: 0;">
+
+        <div class="img-zone img-zone--4-3">
+          <img
+            data-slot="image"
+            src=""
+            alt=""
+            data-slot-alt="alt"
+            loading="eager"
+          />
+        </div>
+
+        <span
+          class="t-caption slot line-clamp-2"
+          data-slot="caption"
+          style="color: var(--color-neutral-600);"
+        ></span>
+
+      </div>
+
+      <!-- Right: text -->
+      <div class="flex-col slot" data-slot="text-col" style="gap: 2rem; container-type: inline-size;">
+
+        <h2
+          class="t-h1 slot line-clamp-3"
+          data-slot="title"
+        >Заголовок слайда</h2>
+
+        <p
+          class="t-body slot line-clamp-6"
+          data-slot="body"
+        >Развёрнутый тезис — до 400 символов. Используется когда текста больше и он требует больше пространства справа.</p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>

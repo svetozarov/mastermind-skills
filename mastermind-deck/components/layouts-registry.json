@@ -1,0 +1,415 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$comment": "Mastermind Deck — Component Registry v1. Selection heuristics use priority (higher = matched first). match_conditions are evaluated in order; first match wins.",
+
+  "cover": {
+    "file": "cover.html",
+    "category": "universal",
+    "slots": {
+      "title":    { "required": true,  "max_chars": 80,  "fitty": true },
+      "subtitle": { "required": false, "max_chars": 60 },
+      "date":     { "required": false, "max_chars": 30 },
+      "code":     { "required": false, "max_chars": 20 }
+    },
+    "priority": 10,
+    "match_conditions": [
+      "explicit_kind=cover",
+      "body_length<=140 AND role=opening"
+    ],
+    "preset_compat": ["sandwich_dark", "editorial", "brutalist"],
+    "decor": "none",
+    "theme": "dark",
+    "notes": "Opening slide. Fitty on title. Sandwich structure: dark cover + dark closing, light content slides."
+  },
+
+  "section-divider": {
+    "file": "section-divider.html",
+    "category": "universal",
+    "slots": {
+      "number":   { "required": true,  "max_chars": 2  },
+      "label":    { "required": true,  "max_chars": 40 },
+      "subtitle": { "required": false, "max_chars": 80 }
+    },
+    "priority": 9,
+    "match_conditions": [
+      "explicit_kind=section-divider",
+      "body_length<=140 AND role=chapter_break",
+      "has_chapter_number AND body_length<=80"
+    ],
+    "preset_compat": ["sandwich_dark", "brutalist"],
+    "decor": "none",
+    "theme": "dark",
+    "notes": "Chapter break. Large accent number + 1–2 words. 70% whitespace by design."
+  },
+
+  "agenda": {
+    "file": "agenda.html",
+    "category": "universal",
+    "slots": {
+      "title":       { "required": false, "max_chars": 40 },
+      "item-1-num":  { "required": true,  "max_chars": 3  },
+      "item-1-text": { "required": true,  "max_chars": 60 },
+      "item-2-num":  { "required": false, "max_chars": 3  },
+      "item-2-text": { "required": false, "max_chars": 60 },
+      "item-3-num":  { "required": false, "max_chars": 3  },
+      "item-3-text": { "required": false, "max_chars": 60 },
+      "item-4-num":  { "required": false, "max_chars": 3  },
+      "item-4-text": { "required": false, "max_chars": 60 }
+    },
+    "priority": 8,
+    "match_conditions": [
+      "explicit_kind=agenda",
+      "role=agenda OR role=outline"
+    ],
+    "preset_compat": ["sandwich_light", "editorial"],
+    "decor": "none",
+    "theme": "light",
+    "notes": "Numbered list, mono font on numbers. Add class is-current to active item."
+  },
+
+  "bullet-list": {
+    "file": "bullet-list.html",
+    "category": "universal",
+    "slots": {
+      "title":    { "required": true,  "max_chars": 80 },
+      "bullet-1": { "required": true,  "max_chars": 110, "clamp_lines": 2 },
+      "bullet-2": { "required": true,  "max_chars": 110, "clamp_lines": 2 },
+      "bullet-3": { "required": true,  "max_chars": 110, "clamp_lines": 2 },
+      "bullet-4": { "required": false, "max_chars": 110, "clamp_lines": 2 },
+      "bullet-5": { "required": false, "max_chars": 110, "clamp_lines": 2 },
+      "bullet-6": { "required": false, "max_chars": 110, "clamp_lines": 2 }
+    },
+    "priority": 7,
+    "match_conditions": [
+      "explicit_kind=bullet-list",
+      "bullets_count>=3 AND bullets_count<=6"
+    ],
+    "preset_compat": ["sandwich_light", "editorial", "brutalist"],
+    "decor": "none",
+    "theme": "light",
+    "notes": "3–6 bullets. Per-item line-clamp 2. Max 110 chars per bullet enforced by loader."
+  },
+
+  "stat": {
+    "file": "stat.html",
+    "category": "universal",
+    "slots": {
+      "number":  { "required": true,  "max_chars": 12, "fitty": true },
+      "caption": { "required": true,  "max_chars": 120, "clamp_lines": 4 },
+      "title":   { "required": false, "max_chars": 60 }
+    },
+    "priority": 12,
+    "match_conditions": [
+      "explicit_kind=stat",
+      "has_number AND has_caption AND body_length<=140"
+    ],
+    "preset_compat": ["sandwich_light", "editorial", "brutalist"],
+    "decor": "none",
+    "theme": "light",
+    "notes": "Hero number with Fitty. Number in accent colour. Caption max 120 chars, clamp 4."
+  },
+
+  "quote": {
+    "file": "quote.html",
+    "category": "universal",
+    "slots": {
+      "quote":  { "required": true,  "max_chars": 300, "clamp_lines": 6 },
+      "author": { "required": true,  "max_chars": 60  },
+      "source": { "required": false, "max_chars": 40  }
+    },
+    "priority": 13,
+    "match_conditions": [
+      "explicit_kind=quote",
+      "has_quote AND has_author"
+    ],
+    "preset_compat": ["sandwich_light", "editorial"],
+    "decor": "none",
+    "theme": "light",
+    "notes": "Quote max 300 chars, line-clamp 6, text-wrap balance. Author in uppercase micro."
+  },
+
+  "two-cols": {
+    "file": "two-cols.html",
+    "category": "universal",
+    "slots": {
+      "left-title":  { "required": false, "max_chars": 60  },
+      "left-body":   { "required": true,  "max_chars": 400, "clamp_lines": 6 },
+      "right-title": { "required": false, "max_chars": 60  },
+      "right-body":  { "required": true,  "max_chars": 400, "clamp_lines": 6 }
+    },
+    "priority": 5,
+    "match_conditions": [
+      "explicit_kind=two-cols",
+      "has_two_content_blocks AND NOT has_shared_title"
+    ],
+    "preset_compat": ["sandwich_light", "editorial", "brutalist"],
+    "decor": "none",
+    "theme": "light",
+    "notes": "5/7 default split (data-split attribute). No shared header. Use two-cols-header when title spans both."
+  },
+
+  "two-cols-header": {
+    "file": "two-cols-header.html",
+    "category": "universal",
+    "slots": {
+      "title":       { "required": true,  "max_chars": 80  },
+      "left-label":  { "required": false, "max_chars": 30  },
+      "left-body":   { "required": true,  "max_chars": 400, "clamp_lines": 6 },
+      "right-label": { "required": false, "max_chars": 30  },
+      "right-body":  { "required": true,  "max_chars": 400, "clamp_lines": 6 }
+    },
+    "priority": 6,
+    "match_conditions": [
+      "explicit_kind=two-cols-header",
+      "has_two_content_blocks AND has_shared_title",
+      "title + subtitle + dense_body"
+    ],
+    "preset_compat": ["sandwich_light", "editorial"],
+    "decor": "none",
+    "theme": "light",
+    "notes": "Shared h2 title spanning full width, then 6/6 columns below. Border-top divider on columns."
+  },
+
+  "image-right": {
+    "file": "image-right.html",
+    "category": "universal",
+    "slots": {
+      "title":   { "required": true,  "max_chars": 80  },
+      "body":    { "required": true,  "max_chars": 400, "clamp_lines": 6 },
+      "image":   { "required": true,  "type": "image"  },
+      "alt":     { "required": true,  "max_chars": 120 },
+      "caption": { "required": false, "max_chars": 60  }
+    },
+    "priority": 4,
+    "match_conditions": [
+      "explicit_kind=image-right",
+      "has_image AND body_length<200"
+    ],
+    "preset_compat": ["sandwich_light", "editorial", "brutalist"],
+    "decor": "none",
+    "theme": "light",
+    "notes": "5/7 split: text left, 4:3 image right. Default layout when image + short body."
+  },
+
+  "image-left": {
+    "file": "image-left.html",
+    "category": "universal",
+    "slots": {
+      "title":   { "required": true,  "max_chars": 80  },
+      "body":    { "required": true,  "max_chars": 400, "clamp_lines": 6 },
+      "image":   { "required": true,  "type": "image"  },
+      "alt":     { "required": true,  "max_chars": 120 },
+      "caption": { "required": false, "max_chars": 60  }
+    },
+    "priority": 3,
+    "match_conditions": [
+      "explicit_kind=image-left",
+      "has_image AND body_length>=200"
+    ],
+    "preset_compat": ["sandwich_light", "editorial", "brutalist"],
+    "decor": "none",
+    "theme": "light",
+    "notes": "5/7 split: 4:3 image left, text right. Used when body is long (>=200 chars)."
+  },
+
+  "full-bleed-hero": {
+    "file": "full-bleed-hero.html",
+    "category": "universal",
+    "slots": {
+      "image":   { "required": true,  "type": "image"  },
+      "alt":     { "required": true,  "max_chars": 120 },
+      "title":   { "required": true,  "max_chars": 80, "clamp_lines": 3 },
+      "body":    { "required": false, "max_chars": 200, "clamp_lines": 3 },
+      "caption": { "required": false, "max_chars": 40  }
+    },
+    "priority": 2,
+    "match_conditions": [
+      "explicit_kind=full-bleed-hero",
+      "has_hero_image AND NOT is_architectural_render AND body_length<=200"
+    ],
+    "preset_compat": ["sandwich_dark", "editorial"],
+    "decor": "overlay_gradient",
+    "theme": "image",
+    "notes": "Full 1920x1080 image + lower-third content over gradient. Overlay gradient from tokens."
+  },
+
+  "timeline": {
+    "file": "timeline.html",
+    "category": "universal",
+    "slots": {
+      "title":         { "required": false, "max_chars": 60  },
+      "point-1-date":  { "required": true,  "max_chars": 20  },
+      "point-1-label": { "required": true,  "max_chars": 60  },
+      "point-2-date":  { "required": true,  "max_chars": 20  },
+      "point-2-label": { "required": true,  "max_chars": 60  },
+      "point-3-date":  { "required": true,  "max_chars": 20  },
+      "point-3-label": { "required": true,  "max_chars": 60  },
+      "point-4-date":  { "required": false, "max_chars": 20  },
+      "point-4-label": { "required": false, "max_chars": 60  },
+      "point-5-date":  { "required": false, "max_chars": 20  },
+      "point-5-label": { "required": false, "max_chars": 60  },
+      "point-6-date":  { "required": false, "max_chars": 20  },
+      "point-6-label": { "required": false, "max_chars": 60  },
+      "point-7-date":  { "required": false, "max_chars": 20  },
+      "point-7-label": { "required": false, "max_chars": 60  }
+    },
+    "priority": 8,
+    "match_conditions": [
+      "explicit_kind=timeline",
+      "has_chronological_sequence AND points_count>=3 AND points_count<=7"
+    ],
+    "preset_compat": ["sandwich_light", "editorial"],
+    "decor": "none",
+    "theme": "light",
+    "notes": "Horizontal track with 3–7 dots. Labels alternate above/below. Optional points hidden by loader."
+  },
+
+  "closing": {
+    "file": "closing.html",
+    "category": "universal",
+    "slots": {
+      "title":    { "required": true,  "max_chars": 80,  "fitty": true },
+      "subtitle": { "required": false, "max_chars": 120, "clamp_lines": 3 },
+      "contact":  { "required": false, "max_chars": 60  },
+      "qr-image": { "required": false, "type": "image"  },
+      "date":     { "required": false, "max_chars": 30  },
+      "code":     { "required": false, "max_chars": 20  }
+    },
+    "priority": 10,
+    "match_conditions": [
+      "explicit_kind=closing",
+      "role=closing OR role=thank_you"
+    ],
+    "preset_compat": ["sandwich_dark", "editorial", "brutalist"],
+    "decor": "none",
+    "theme": "dark",
+    "notes": "Mirror of cover. Dark background. Contact + optional QR slot. Fitty on title."
+  },
+
+  "full-bleed-render": {
+    "file": "full-bleed-render.html",
+    "category": "architectural",
+    "slots": {
+      "image": { "required": true,  "type": "image"  },
+      "alt":   { "required": true,  "max_chars": 120 },
+      "index": { "required": false, "max_chars": 4   },
+      "desc":  { "required": false, "max_chars": 60  },
+      "year":  { "required": false, "max_chars": 8   }
+    },
+    "priority": 11,
+    "match_conditions": [
+      "explicit_kind=full-bleed-render",
+      "has_hero_image AND is_architectural_render"
+    ],
+    "preset_compat": ["sandwich_dark", "editorial"],
+    "decor": "meta_caption",
+    "theme": "image",
+    "notes": "Architectural render full-slide. object-fit cover. Metadata caption: index/desc/year in 11px mono uppercase. Sharp pre-upscale to 3840x2160 recommended."
+  },
+
+  "plan-section-axon": {
+    "file": "plan-section-axon.html",
+    "category": "architectural",
+    "slots": {
+      "title":           { "required": false, "max_chars": 60  },
+      "plan-image":      { "required": true,  "type": "image"  },
+      "plan-alt":        { "required": true,  "max_chars": 120 },
+      "plan-caption":    { "required": false, "max_chars": 40  },
+      "section-image":   { "required": true,  "type": "image"  },
+      "section-alt":     { "required": true,  "max_chars": 120 },
+      "section-caption": { "required": false, "max_chars": 40  },
+      "axon-image":      { "required": true,  "type": "image"  },
+      "axon-alt":        { "required": true,  "max_chars": 120 },
+      "axon-caption":    { "required": false, "max_chars": 40  }
+    },
+    "priority": 14,
+    "match_conditions": [
+      "explicit_kind=plan-section-axon",
+      "has_plan_drawing AND has_section_drawing",
+      "has_plan AND has_section"
+    ],
+    "preset_compat": ["sandwich_light", "editorial"],
+    "decor": "none",
+    "theme": "light",
+    "notes": "Three-cell grid: plan top (full width), section bottom-left, axon bottom-right. object-fit contain for crisp line drawings."
+  },
+
+  "before-after": {
+    "file": "before-after.html",
+    "category": "architectural",
+    "slots": {
+      "title":          { "required": false, "max_chars": 60  },
+      "before-image":   { "required": true,  "type": "image"  },
+      "before-alt":     { "required": true,  "max_chars": 120 },
+      "before-label":   { "required": false, "max_chars": 20, "default": "EXISTING"  },
+      "before-caption": { "required": false, "max_chars": 60  },
+      "after-image":    { "required": true,  "type": "image"  },
+      "after-alt":      { "required": true,  "max_chars": 120 },
+      "after-label":    { "required": false, "max_chars": 20, "default": "PROPOSED"  },
+      "after-caption":  { "required": false, "max_chars": 60  }
+    },
+    "priority": 15,
+    "match_conditions": [
+      "explicit_kind=before-after",
+      "has_two_images AND images_are_comparison_pair"
+    ],
+    "preset_compat": ["sandwich_light", "editorial", "brutalist"],
+    "decor": "labels",
+    "theme": "image",
+    "notes": "50/50 split. Full-bleed images. EXISTING/PROPOSED labels with contrast paper backing. No accent lines."
+  },
+
+  "material-grid": {
+    "file": "material-grid.html",
+    "category": "architectural",
+    "slots": {
+      "title":      { "required": false, "max_chars": 60 },
+      "item-1-image": { "required": true,  "type": "image"  },
+      "item-1-alt":   { "required": true,  "max_chars": 120 },
+      "item-1-label": { "required": true,  "max_chars": 40  },
+      "item-1-sub":   { "required": false, "max_chars": 40  },
+      "item-2-image": { "required": true,  "type": "image"  },
+      "item-2-alt":   { "required": true,  "max_chars": 120 },
+      "item-2-label": { "required": true,  "max_chars": 40  },
+      "item-2-sub":   { "required": false, "max_chars": 40  },
+      "item-3-image": { "required": true,  "type": "image"  },
+      "item-3-alt":   { "required": true,  "max_chars": 120 },
+      "item-3-label": { "required": true,  "max_chars": 40  },
+      "item-3-sub":   { "required": false, "max_chars": 40  },
+      "item-4-image": { "required": false, "type": "image"  },
+      "item-4-alt":   { "required": false, "max_chars": 120 },
+      "item-4-label": { "required": false, "max_chars": 40  },
+      "item-4-sub":   { "required": false, "max_chars": 40  },
+      "item-5-image": { "required": false, "type": "image"  },
+      "item-5-alt":   { "required": false, "max_chars": 120 },
+      "item-5-label": { "required": false, "max_chars": 40  },
+      "item-5-sub":   { "required": false, "max_chars": 40  },
+      "item-6-image": { "required": false, "type": "image"  },
+      "item-6-alt":   { "required": false, "max_chars": 120 },
+      "item-6-label": { "required": false, "max_chars": 40  },
+      "item-6-sub":   { "required": false, "max_chars": 40  },
+      "item-7-image": { "required": false, "type": "image"  },
+      "item-7-alt":   { "required": false, "max_chars": 120 },
+      "item-7-label": { "required": false, "max_chars": 40  },
+      "item-7-sub":   { "required": false, "max_chars": 40  },
+      "item-8-image": { "required": false, "type": "image"  },
+      "item-8-alt":   { "required": false, "max_chars": 120 },
+      "item-8-label": { "required": false, "max_chars": 40  },
+      "item-8-sub":   { "required": false, "max_chars": 40  },
+      "item-9-image": { "required": false, "type": "image"  },
+      "item-9-alt":   { "required": false, "max_chars": 120 },
+      "item-9-label": { "required": false, "max_chars": 40  },
+      "item-9-sub":   { "required": false, "max_chars": 40  }
+    },
+    "priority": 9,
+    "match_conditions": [
+      "explicit_kind=material-grid",
+      "has_multiple_images AND images_are_material_samples",
+      "images_count>=3 AND images_count<=9 AND images_same_theme"
+    ],
+    "preset_compat": ["sandwich_light", "editorial"],
+    "decor": "none",
+    "theme": "light",
+    "notes": "auto-fit grid minmax(180px,1fr). Each cell: 1:1 aspect-ratio, object-fit cover. Optional items hidden by loader when slots empty."
+  }
+}

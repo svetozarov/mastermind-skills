@@ -1,0 +1,47 @@
+<!--
+  bullet-list.html — Title + 3–6 bullet points, line-clamp 2 per item
+  Slots:
+    data-slot="title"     — required, max 80 chars
+    data-slot="bullet-N"  — bullet text, max 110 chars per item (3–6 items)
+  Example: title="Три принципа", bullet-1="Первый принцип — короткая формулировка"
+-->
+<section class="slide" aria-label="Bullet list slide">
+
+  <div class="slide__inner" style="justify-content: center; gap: 3.5rem;">
+
+    <h2
+      class="t-h1 slot line-clamp-3"
+      data-slot="title"
+    >Заголовок</h2>
+
+    <ul class="bullet-list slot" data-slot="bullets">
+
+      <li>
+        <span class="t-body slot line-clamp-2" data-slot="bullet-1">Первый пункт — развёрнутая формулировка до 110 символов</span>
+      </li>
+
+      <li>
+        <span class="t-body slot line-clamp-2" data-slot="bullet-2">Второй пункт — развёрнутая формулировка до 110 символов</span>
+      </li>
+
+      <li>
+        <span class="t-body slot line-clamp-2" data-slot="bullet-3">Третий пункт — развёрнутая формулировка до 110 символов</span>
+      </li>
+
+      <li>
+        <span class="t-body slot line-clamp-2" data-slot="bullet-4"></span>
+      </li>
+
+      <li>
+        <span class="t-body slot line-clamp-2" data-slot="bullet-5"></span>
+      </li>
+
+      <li>
+        <span class="t-body slot line-clamp-2" data-slot="bullet-6"></span>
+      </li>
+
+    </ul>
+
+  </div>
+
+</section>
